@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KUSH STREETWEAR | التشكيـلة الجديـدة</title>
+    <!-- خط عصري احترافي -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0b0d;
+            --card-bg: #141419;
+            --accent-color: #e63946;
+            --text-main: #f8f9fa;
+            --text-muted: #8d99ae;
+            --border-color: #2b2b36;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Nav Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(11, 11, 13, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            color: var(--text-main);
+            text-transform: uppercase;
+        }
+
+        .logo span { color: var(--accent-color); }
+
+        .tagline-badge {
+            background: rgba(230, 57, 70, 0.1);
+            color: var(--accent-color);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border: 1px solid var(--accent-color);
+        }
+
+        /* Hero Banner Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Products Grid Section */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-color);
+            box-shadow: 0 12px 30px rgba(230, 57, 70, 0.15);
+        }
+
+        .img-placeholder {
+            width: 100%;
+            height: 380px;
+            background: linear-gradient(135deg, #1e1e26, #2a2a38);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 1rem;
+            position: relative;
+        }
+
+        .badge-trend {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: #fff;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .product-details {
+            padding: 25px;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .price-tag {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .price-tag span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: normal;
+        }
+
+        .btn-order {
+            width: 100%;
+            padding: 14px;
+            background: var(--text-main);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-order:hover {
+            background: var(--accent-color);
+            color: #fff;
+        }
+
+        /* Checkout Page / Modal Section */
+        #checkout-page {
+            display: none;
+            max-width: 600px;
+            margin: 40px auto 80px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .selected-item-summary {
+            background: rgba(255,255,255,0.03);
+            border: 1px dashed var(--border-color);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 14px;
+            background: #0b0b0d;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--accent-color);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: var(--accent-color);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn-back {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Success Message */
+        #success-message {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        #success-message h2 {
+            color: #2ec4b6;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <div class="logo">KUSH<span>.STREET</span></div>
+        <div class="tagline-badge">المجموعة الجديدة 🔥</div>
+    </header>
+
+    <!-- Page 1: Shop View -->
+    <div id="shop-page">
+        <section class="hero">
+            <h1>Oversize Collection</h1>
+            <p>تشكيلة تيشيرتات واسعة لخامات عالية الجودة مصممة لشباب الجامعات.</p>
+        </section>
+
+        <section class="container">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="img-placeholder">
+                    <span class="badge-trend">الأكثر مبيعاً</span>
+                    🖼️ [صورة التيشيرت هنا]
+                </div>
+                <div class="product-details">
+                    <div class="product-title">Heavyweight Acid Wash Tee</div>
+                    <div class="product-desc">قطن 100% ثقيل | قصة أوفورسايز عصرية</div>
+                    <div class="price-tag">70,000 <span>ج.س</span></div>
+                    <button class="btn-order" onclick="openCheckout('Heavyweight Acid Wash Tee', '70,000 ج.س')">طلب الآن</button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="img-placeholder">
+                    <span class="badge-trend">Trending</span>
+                    🖼️ [صورة التيشيرت هنا]
+                </div>
+                <div class="product-details">
+                    <div class="product-title">Minimalist Back Print Tee</div>
+                    <div class="product-desc">طباعة حرارية عالية الجودة لا تتأثر بالغسيل</div>
+                    <div class="price-tag">70,000 <span>ج.س</span></div>
+                    <button class="btn-order" onclick="openCheckout('Minimalist Back Print Tee', '70,000 ج.س')">طلب الآن</button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="img-placeholder">
+                    <span class="badge-trend">جديد</span>
+                    🖼️ [صورة التيشيرت هنا]
+                </div>
+                <div class="product-details">
+                    <div class="product-title">Vintage Graphic Tee</div>
+                    <div class="product-desc">ستايل وينتج عصري ومريح للجامعة والطلعات</div>
+                    <div class="price-tag">70,000 <span>ج.س</span></div>
+                    <button class="btn-order" onclick="openCheckout('Vintage Graphic Tee', '70,000 ج.س')">طلب الآن</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Page 2: Checkout / Shipping Form -->
+    <div id="checkout-page">
+        <button class="btn-back" onclick="showShop()">← العودة للتيشيرتات</button>
+        
+        <div class="checkout-header">
+            <h2>إكمال الطلب</h2>
+            <p>أدخل بياناتك لتأكيد التوصيل</p>
+        </div>
+
+        <div class="selected-item-summary">
+            <div>
+                <strong id="summary-title" style="display:block;">اسم المنتج</strong>
+                <span style="color:var(--text-muted); font-size:0.85rem;">المقاس: Oversize</span>
+            </div>
+            <div id="summary-price" style="color:var(--accent-color); font-weight:bold;">70,000 ج.س</div>
+        </div>
+
+        <form id="orderForm" onsubmit="handleOrderSubmit(event)">
+            <div class="form-group">
+                <label>الاسم بالكامل</label>
+                <input type="text" placeholder="مثال: أحمد محمد" required>
+            </div>
+
+            <div class="form-group">
+                <label>رقم الهاتف / الواتساب</label>
+                <input type="tel" placeholder="0912345678" required>
+            </div>
+
+            <div class="form-group">
+                <label>المقاس المطلوب</label>
+                <select required>
+                    <option value="">اختر المقاس</option>
+                    <option value="M">Medium (M) - Oversize</option>
+                    <option value="L">Large (L) - Oversize</option>
+                    <option value="XL">X-Large (XL) - Oversize</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>المدينة / الجامعة / العنوان التفصيلي</label>
+                <input type="text" placeholder="اسم الجامعة أو المنطقة والسكن" required>
+            </div>
+
+            <button type="submit" class="btn-submit">تأكيد الطلب الآن</button>
+        </form>
+    </div>
+
+    <!-- Success Message Page -->
+    <div id="success-message">
+        <h2>🎉 تم استقبال طلبك بنجاح!</h2>
+        <p>سيتواصل معك فريقنا عبر الواتساب لتأكيد الشحن والتوصيل خلال ساعات.</p>
+        <br><br>
+        <button class="btn-order" style="max-width:200px; margin:0 auto;" onclick="showShop()">العودة للرئيسية</button>
+    </div>
+
+    <!-- Script Handling Navigation & Form -->
+    <script>
+        function openCheckout(productTitle, productPrice) {
+            document.getElementById('shop-page').style.display = 'none';
+            document.getElementById('checkout-page').style.display = 'block';
+            document.getElementById('success-message').style.display = 'none';
+            
+            document.getElementById('summary-title').innerText = productTitle;
+            document.getElementById('summary-price').innerText = productPrice;
+            
+            window.scrollTo(0, 0);
+        }
+
+        function showShop() {
+            document.getElementById('shop-page').style.display = 'block';
+            document.getElementById('checkout-page').style.display = 'none';
+            document.getElementById('success-message').style.display = 'none';
+        }
+
+        function handleOrderSubmit(event) {
+            event.preventDefault();
+            document.getElementById('checkout-page').style.display = 'none';
+            document.getElementById('success-message').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
